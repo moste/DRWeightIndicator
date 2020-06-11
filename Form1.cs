@@ -171,6 +171,11 @@ namespace DRWeightIndicator
             // Using thread class 
             mUdpServerThread = new Thread(new ThreadStart(this.udpServer));
             mUdpServerThread.Start();
+
+            if (mConfig.debug)
+            {
+                labelDebug.Text = "DEBUG ON";
+            }
         }
 
         private void timerDelay_Tick(object sender, EventArgs e)
