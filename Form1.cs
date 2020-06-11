@@ -106,6 +106,7 @@ namespace DRWeightIndicator
             public int ratio_glatitue = 30;
             public int ratio_glongtitue = 30;
             public int listen_port = 9050;
+            public bool debug = false;
         }
         
 
@@ -133,17 +134,20 @@ namespace DRWeightIndicator
             using (StreamReader r = new StreamReader("./config.json"))
             {
                 string json = r.ReadToEnd();
-                mConfig = JsonConvert.DeserializeObject<ConfigItem>(json);           
+                mConfig = JsonConvert.DeserializeObject<ConfigItem>(json);                
             }
         }
 
         private void UpdateDataBar(int index, TelemetryData data)
         {
             //Update the progress value.
-            //string debugStr = string.Format("Packet: {0} / Lat: {1} / Long: {2} / Gear: {3} / Thro: {4} / Brak: {5} / Speed: {6} / Engine: {7} / latTIme: {8} / steer: {9}",
-            //    index.ToString(), data.Gforce_lat, data.Gforce_lon, data.Gear, data.Throttle, data.Brake, data.Speed*60, data.EngineRate*10, data.LapTime, data.Steer);
-            //labelDebug.Text = debugStr;
-            //Console.WriteLine(debugStr);
+            string debugStr = string.Format("Packet: {0} / Lat: {1} / Long: {2} / Gear: {3} / Thro: {4} / Brak: {5} / Speed: {6} / Engine: {7} / latTIme: {8} / steer: {9}",
+                index.ToString(), data.Gforce_lat, data.Gforce_lon, data.Gear, data.Throttle, data.Brake, data.Speed*60, data.EngineRate*10, data.LapTime, data.Steer);
+            if (mConfig.debug)
+            {
+                labelDebug.Text = debugStr;
+                Console.WriteLine(debugStr);
+            }            
 
             steerIndicator.Location = new Point((int)(this.center_pos.X) + (int)(data.Steer* mConfig.ratio_steering), this.center_pos.Y);
 

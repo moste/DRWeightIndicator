@@ -44,11 +44,10 @@
             // 
             this.labelDebug.AutoSize = true;
             this.labelDebug.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelDebug.Location = new System.Drawing.Point(0, 0);
+            this.labelDebug.Location = new System.Drawing.Point(11, 34);
             this.labelDebug.Name = "labelDebug";
-            this.labelDebug.Size = new System.Drawing.Size(95, 12);
+            this.labelDebug.Size = new System.Drawing.Size(0, 12);
             this.labelDebug.TabIndex = 0;
-            this.labelDebug.Text = "Waiting data...";
             // 
             // steerIndicator
             // 

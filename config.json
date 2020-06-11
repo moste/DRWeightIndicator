@@ -2,5 +2,6 @@
 	"ratio_steering": 800,
 	"ratio_glatitue": 30,
 	"ratio_glongtitue": 30,
-	"listen_port": 9050
+	"listen_port": 9050,
+	"debug": true
 }
