@@ -31,7 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.timerDelay = new System.Windows.Forms.Timer(this.components);
             this.labelDebug = new System.Windows.Forms.Label();
-            this.steerIndicator = new System.Windows.Forms.Panel();
+            this.gLatIndicator = new System.Windows.Forms.Panel();
+            this.labelSteer = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timerDelay
@@ -49,13 +50,24 @@
             this.labelDebug.Size = new System.Drawing.Size(0, 12);
             this.labelDebug.TabIndex = 0;
             // 
-            // steerIndicator
+            // gLatIndicator
             // 
-            this.steerIndicator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.steerIndicator.Location = new System.Drawing.Point(454, 26);
-            this.steerIndicator.Name = "steerIndicator";
-            this.steerIndicator.Size = new System.Drawing.Size(15, 59);
-            this.steerIndicator.TabIndex = 1;
+            this.gLatIndicator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.gLatIndicator.Location = new System.Drawing.Point(454, 26);
+            this.gLatIndicator.Name = "gLatIndicator";
+            this.gLatIndicator.Size = new System.Drawing.Size(15, 59);
+            this.gLatIndicator.TabIndex = 1;
+            // 
+            // labelSteer
+            // 
+            this.labelSteer.AutoSize = true;
+            this.labelSteer.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelSteer.ForeColor = System.Drawing.SystemColors.Control;
+            this.labelSteer.Location = new System.Drawing.Point(6, 19);
+            this.labelSteer.Name = "labelSteer";
+            this.labelSteer.Size = new System.Drawing.Size(48, 16);
+            this.labelSteer.TabIndex = 2;
+            this.labelSteer.Text = "STEER";
             // 
             // FormMain
             // 
@@ -64,7 +76,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(1000, 100);
-            this.Controls.Add(this.steerIndicator);
+            this.Controls.Add(this.labelSteer);
+            this.Controls.Add(this.gLatIndicator);
             this.Controls.Add(this.labelDebug);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -85,7 +98,8 @@
 
         private System.Windows.Forms.Timer timerDelay;
         private System.Windows.Forms.Label labelDebug;
-        private System.Windows.Forms.Panel steerIndicator;
+        private System.Windows.Forms.Panel gLatIndicator;
+        private System.Windows.Forms.Label labelSteer;
     }
 }
 

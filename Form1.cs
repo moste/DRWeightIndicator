@@ -150,7 +150,7 @@ namespace DRWeightIndicator
             }            
 
             //steerIndicator.Location = new Point((int)(this.center_pos.X) + (int)(data.Steer* mConfig.ratio_steering), this.center_pos.Y);
-            steerIndicator.Location = new Point((int)(this.center_pos.X) + (int)(data.Gforce_lat * mConfig.ratio_steering), this.center_pos.Y);
+            gLatIndicator.Location = new Point((int)(this.center_pos.X) + (int)(data.Gforce_lat * mConfig.ratio_steering), this.center_pos.Y);
 
             int new_y = this.ini_pos.Y - (int)(data.Gforce_lon * mConfig.ratio_glongtitue);
             if (new_y > 0)
@@ -163,6 +163,8 @@ namespace DRWeightIndicator
 
             this.new_pos = new Rectangle(new_x, new_y, this.ini_pos.Width, this.ini_pos.Height);
             SetWindowPos(this.my_process.MainWindowHandle, HWND_TOPMOST, this.new_pos.X, this.new_pos.Y, this.new_pos.Width, this.new_pos.Height, SWP_SHOWWINDOW);
+
+            labelSteer.Text = (data.Steer*100).ToString();
         }
 
 
@@ -200,7 +202,7 @@ namespace DRWeightIndicator
 
             //Thread.Sleep(1000);
             //move_Banner(new Rectangle(10, 10, 1000, 1000));
-            steerIndicator.Location = this.center_pos;
+            gLatIndicator.Location = this.center_pos;
         }
 
         TelemetryData ByteArrayToTelemetryData(byte[] bytes)
