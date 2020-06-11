@@ -149,7 +149,8 @@ namespace DRWeightIndicator
                 Console.WriteLine(debugStr);
             }            
 
-            steerIndicator.Location = new Point((int)(this.center_pos.X) + (int)(data.Steer* mConfig.ratio_steering), this.center_pos.Y);
+            //steerIndicator.Location = new Point((int)(this.center_pos.X) + (int)(data.Steer* mConfig.ratio_steering), this.center_pos.Y);
+            steerIndicator.Location = new Point((int)(this.center_pos.X) + (int)(data.Gforce_lat * mConfig.ratio_steering), this.center_pos.Y);
 
             int new_y = this.ini_pos.Y - (int)(data.Gforce_lon * mConfig.ratio_glongtitue);
             if (new_y > 0)
@@ -157,7 +158,7 @@ namespace DRWeightIndicator
                 new_y = 0;
             }
 
-            int new_x = this.ini_pos.X - (int)(data.Gforce_lat * mConfig.ratio_glatitue);
+            int new_x = this.ini_pos.X + (int)(data.Gforce_lat * mConfig.ratio_glatitue);
 
 
             this.new_pos = new Rectangle(new_x, new_y, this.ini_pos.Width, this.ini_pos.Height);
@@ -174,7 +175,7 @@ namespace DRWeightIndicator
 
             if (mConfig.debug)
             {
-                labelDebug.Text = "DEBUG ON";
+                labelDebug.Text = "DEBUG ON, listening at " + mConfig.listen_port.ToString();
             }
         }
 
