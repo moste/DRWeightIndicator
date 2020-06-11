@@ -1,3 +1,3 @@
 # DRWeightIndicator
 
-A center of gravity about the car Indicator for Dirt Rally 2.0.
+A indicator for center gravity of the car for Dirt Rally 2.0.
