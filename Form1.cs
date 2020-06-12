@@ -103,10 +103,13 @@ namespace DRWeightIndicator
         public class ConfigItem
         {
             public int ratio_steering = 800;
-            public int ratio_glatitue = 30;
+            public int ratio_glatitue = 400;
             public int ratio_glongtitue = 30;
             public int listen_port = 9050;
-            public bool debug = false;
+            public bool debug = true;
+            public bool show_adjust_steer = true;
+            public bool show_brake = true;
+            public double opacity = 0.5;
         }
         
 
@@ -126,6 +129,19 @@ namespace DRWeightIndicator
             this.mDateUpdater = new DataUpdateDelegate(this.UpdateDataBar);
             InitializeComponent();
             ReadConfig();
+
+            if (mConfig.show_brake)
+            {
+                panelBrakeLightRight.Show();
+                panelBrakeLightLeft.Show();
+                panelBrakeLightLeft.BackColor = Color.FromName("Maroon");
+                panelBrakeLightRight.BackColor = Color.FromName("Maroon");
+            }
+            else
+            {
+                panelBrakeLightRight.Hide();
+                panelBrakeLightLeft.Hide();
+            }            
         }
 
         private void ReadConfig()
@@ -149,8 +165,7 @@ namespace DRWeightIndicator
                 Console.WriteLine(debugStr);
             }
 
-            //steerIndicator.Location = new Point((int)(this.center_pos.X) + (int)(data.Steer* mConfig.ratio_steering), this.center_pos.Y);
-            gLatIndicator.Location = new Point((int)(this.center_pos.X) + (int)(data.Gforce_lat * mConfig.ratio_steering), this.center_pos.Y);
+            gLatIndicator.Location = new Point((int)(this.center_pos.X) + (int)(data.Gforce_lat * mConfig.ratio_glatitue), this.center_pos.Y);
 
             int new_y = this.ini_pos.Y - (int)(data.Gforce_lon * mConfig.ratio_glongtitue);
             if (new_y > 0)
@@ -158,13 +173,31 @@ namespace DRWeightIndicator
                 new_y = 0;
             }
 
-            int new_x = this.ini_pos.X + (int)(data.Gforce_lat * mConfig.ratio_glatitue);
-
+            int new_x = this.ini_pos.X + (int)(data.Gforce_lat * mConfig.ratio_glatitue/10);
 
             this.new_pos = new Rectangle(new_x, new_y, this.ini_pos.Width, this.ini_pos.Height);
             SetWindowPos(this.my_process.MainWindowHandle, HWND_TOPMOST, this.new_pos.X, this.new_pos.Y, this.new_pos.Width, this.new_pos.Height, SWP_SHOWWINDOW);
 
-            labelSteer.Text = (data.Steer*100).ToString();
+            if (mConfig.debug || mConfig.show_adjust_steer || data.Gear == 0 && data.Speed*3.6 < 5)
+            {
+                panelSteer.Location = new Point((int)(this.center_pos.X) + (int)(data.Steer * mConfig.ratio_steering), this.center_pos.Y);
+                panelSteer.Show();
+            }
+            else
+            {
+                panelSteer.Hide();
+            }            
+
+            if (data.Brake > 0)
+            {
+                panelBrakeLightLeft.BackColor = Color.FromName("OrangeRed");
+                panelBrakeLightRight.BackColor = Color.FromName("OrangeRed");
+            }
+            else
+            {
+                panelBrakeLightLeft.BackColor = Color.FromName("DarkRed");
+                panelBrakeLightRight.BackColor = Color.FromName("DarkRed");
+            }
         }
 
 
@@ -203,6 +236,11 @@ namespace DRWeightIndicator
             //Thread.Sleep(1000);
             //move_Banner(new Rectangle(10, 10, 1000, 1000));
             gLatIndicator.Location = this.center_pos;
+
+            panelBrakeLightLeft.Location = new Point(8, 12);
+            panelBrakeLightRight.Location = new Point((int)(this.Width - 52), 12);
+
+            this.Opacity = mConfig.opacity;
         }
 
         TelemetryData ByteArrayToTelemetryData(byte[] bytes)

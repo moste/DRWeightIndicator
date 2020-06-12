@@ -1,7 +1,10 @@
 {
 	"ratio_steering": 800,
-	"ratio_glatitue": 30,
+	"ratio_glatitue": 20,
 	"ratio_glongtitue": 30,
 	"listen_port": 9050,
-	"debug": true
+	"debug": false,
+	"show_adjust_steer": true,
+	"show_brake": true,
+	"opacity": 0.5
 }
