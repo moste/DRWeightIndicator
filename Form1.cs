@@ -173,7 +173,8 @@ namespace DRWeightIndicator
                 new_y = 0;
             }
 
-            int new_x = this.ini_pos.X + (int)(data.Gforce_lat * mConfig.ratio_glatitue/10);
+            // int new_x = this.ini_pos.X + (int)(data.Gforce_lat * mConfig.ratio_glatitue/10);
+            int new_x = this.ini_pos.X;
 
             this.new_pos = new Rectangle(new_x, new_y, this.ini_pos.Width, this.ini_pos.Height);
             SetWindowPos(this.my_process.MainWindowHandle, HWND_TOPMOST, this.new_pos.X, this.new_pos.Y, this.new_pos.Width, this.new_pos.Height, SWP_SHOWWINDOW);
@@ -241,6 +242,8 @@ namespace DRWeightIndicator
             panelBrakeLightRight.Location = new Point((int)(this.Width - 52), 12);
 
             this.Opacity = mConfig.opacity;
+
+            panelCenter.Location = new Point(this.Width / 2 - 1, 0);
         }
 
         TelemetryData ByteArrayToTelemetryData(byte[] bytes)

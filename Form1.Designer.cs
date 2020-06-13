@@ -35,6 +35,7 @@
             this.panelBrakeLightLeft = new System.Windows.Forms.Panel();
             this.panelBrakeLightRight = new System.Windows.Forms.Panel();
             this.panelSteer = new System.Windows.Forms.Panel();
+            this.panelCenter = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // timerDelay
@@ -54,10 +55,10 @@
             // 
             // gLatIndicator
             // 
-            this.gLatIndicator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.gLatIndicator.BackColor = System.Drawing.Color.RoyalBlue;
             this.gLatIndicator.Location = new System.Drawing.Point(454, 26);
             this.gLatIndicator.Name = "gLatIndicator";
-            this.gLatIndicator.Size = new System.Drawing.Size(15, 59);
+            this.gLatIndicator.Size = new System.Drawing.Size(20, 59);
             this.gLatIndicator.TabIndex = 1;
             // 
             // panelBrakeLightLeft
@@ -78,11 +79,21 @@
             // 
             // panelSteer
             // 
-            this.panelSteer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.panelSteer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.panelSteer.Location = new System.Drawing.Point(470, 24);
             this.panelSteer.Name = "panelSteer";
-            this.panelSteer.Size = new System.Drawing.Size(5, 60);
+            this.panelSteer.Size = new System.Drawing.Size(12, 60);
             this.panelSteer.TabIndex = 5;
+            // 
+            // panelCenter
+            // 
+            this.panelCenter.BackColor = System.Drawing.Color.White;
+            this.panelCenter.ForeColor = System.Drawing.Color.White;
+            this.panelCenter.Location = new System.Drawing.Point(585, 24);
+            this.panelCenter.Margin = new System.Windows.Forms.Padding(0);
+            this.panelCenter.Name = "panelCenter";
+            this.panelCenter.Size = new System.Drawing.Size(1, 60);
+            this.panelCenter.TabIndex = 6;
             // 
             // FormMain
             // 
@@ -91,6 +102,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(1000, 100);
+            this.Controls.Add(this.panelCenter);
             this.Controls.Add(this.panelSteer);
             this.Controls.Add(this.gLatIndicator);
             this.Controls.Add(this.panelBrakeLightRight);
@@ -119,6 +131,7 @@
         private System.Windows.Forms.Panel panelBrakeLightLeft;
         private System.Windows.Forms.Panel panelBrakeLightRight;
         private System.Windows.Forms.Panel panelSteer;
+        private System.Windows.Forms.Panel panelCenter;
     }
 }
 
